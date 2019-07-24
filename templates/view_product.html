@@ -12,15 +12,10 @@
         {% call macros.card(title='Product Name') -%}
         <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;">
         {%- endcall %}
-        <p>Amount <select class="text-right" name="amount">Amount
-            <option value="price">1 $85.00</option>
-            <option value="popular">2 $170.00</option>
-            <option value="popular">3 $255.00</option>
-        </select></p>
-        
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 45px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 45px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 45px;">
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
     </div>
     <div class="col mr-5">
         {% call macros.card(title='Product Description') -%}
@@ -30,11 +25,21 @@
         {%- endcall %}
     </div>
 </div>
-<!-- <div class="row">Amount -->
-    <!-- <select class="card-header text-right" name="amount">
-        <option value="price">1 $85.00</option>
-        <option value="popular">2 $170.00</option>
-        <option value="popular">3 $255.00</option>
-    </select> -->
-<!-- </div> -->
+
+<form action=# method="POST">
+    <div class="form-group row mt-3">
+        <div class="col py-2 text-right">
+            <p style="margin-right: 5px;"> Amount <select name="amount">Amount
+                <option value="price">1 $85.00</option>
+                <option value="popular">2 $170.00</option>
+                <option value="popular">3 $255.00</option>
+            </select></p>
+            <p></p>
+        </div>
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-success">Pay</button>
+        </div>
+    </div>
+</form>
+
 {%endblock%}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .left h3,
+        .left h4 {
+            display: inline-block;
+            margin-right: 45px;
+        }
+
+        .right h4 {
+            margin-right: 45px;
+        }
+
+        .search {
+            border-radius: 14px;
+            margin-top: 48px;
+            margin-left: 175px;
+            margin-bottom: 20px;
+
+        }
+
+        table.table {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        ul li {
+            display: inline-block;
+            margin-top: 35px;
+        }
+
+        ul {
+            text-align: center;
+        }
+
+        button.add_product {
+            margin-right: 175px;
+        }
+        table td a {
+            text-decoration: underline;
+            margin-right: 10px;
+        }
+
+    </style>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_header.css') }}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark" style="background-color: #990000;">
+        <div class="left">
+            <h3 style="color:white" id="head">Dashboard</h3>
+            <a href="#" onclick="underline()">
+                <h4 class="click" style="color:white" id="head">Orders</h4>
+            </a>
+            <a href="#">
+                <h4 class="click" style="color:white" id="head">Products</h4>
+            </a>
+        </div>
+        <div class="right">
+            <a href="#">
+                <h4 style="color:white" id="head">log off</h4>
+            </a>
+        </div>
+    </nav>
+    <main>
+        <nav class="navbar">
+            <form class="form-inline">
+                <div class="input-group">
+                    <input class="search" type="search" class="form-control" placeholder="search" aria-label="Username"
+                        aria-describedby="basic-addon1" results="0">
+                </div>
+            </form>
+            <button type="button" class="add_product btn btn-primary" data-toggle="modal" data-target="#add_product">
+                Add new product
+            </button>
+        </nav>
+        <table class="table table-striped">
+            <thead>
+                <tr style="background-color: #cccccc">
+                    <th scope="col">Picture</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Inventory Count</th>
+                    <th scope="col">Quantity sold</th>
+                    <th scope="col">action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><img src="#" alt="img"></th>
+                    <td>1</td>
+                    <td>T-shirt</td>
+                    <td>123</td>
+                    <td>1000</td>
+                    <td>
+                        <a href="#" data-toggle="modal" data-target="#edit_product">edit</a>
+                        <a href="#">delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="modal fade" id="add_product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add a new product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                             <div class="form-group">
+                                 <label for="description">Description</label>
+                                 <br>
+                                 <textarea class="form-control" cols="55" rows="5" name="description"></textarea>
+                             </div>
+                            
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Categories</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Racket</option>
+                                    <option>Tennis Balls</option>
+                                    <option>Shirts</option>
+                                    <option>Skirts</option>
+                                    <option>Hats</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">or add new category</label>
+                                <input type="text" name="new_category" class="form-control" id="exampleFormControlInput1">
+                            </div>
+                            <form action="/action_page.php">
+                                <input type="file" name="pic" accept="image/*">
+                                <input type="submit">
+                            </form>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Add product</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+<div class="modal fade" id="edit_product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Product - ID 2</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <br>
+                        <textarea class="form-control" cols="55" rows="5" name="description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Categories</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Racket</option>
+                            <option>Tennis Balls</option>
+                            <option>Shirts</option>
+                            <option>Skirts</option>
+                            <option>Hats</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">or add new category</label>
+                        <input type="text" name="new_category" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <form action="/action_page.php">
+                        <input type="file" name="pic" accept="image/*">
+                        <input type="submit">
+                    </form>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Add product</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </main>
+    <footer>
+        <ul>
+            <li><a href="#">1 |</a></li>
+            <li><a href="#">2 |</a></li>
+            <li><a href="#">3 |</a></li>
+        </ul>
+    </footer>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".click").click(function () {
+            $(this).css("text-decoration", "underline")
+            $(this).css("text-decoration-color", "#c87676")
+        })
+        $("#MyModal").modal();
+    });
+</script>
+
+</html>

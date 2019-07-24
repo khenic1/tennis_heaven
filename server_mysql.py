@@ -31,7 +31,7 @@ def carts():
     return render_template('carts.html')
 
 @app.route("/products/show/<productid>")
-def display_product():
+def display_product(productid):
     return render_template('view_product.html')
 
 @app.route('/orders')

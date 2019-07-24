@@ -20,7 +20,7 @@ DELETE_RECORD = 'DELETE FROM table WHERE id=%(id)s'
 
 racquets = ['prince_racquet', 'head_racquet','wilson_racquet', 'babolat_racquet']
 
-@app.route("/")
+@app.route("/products/category")
 def mainpage():
     print(get_flashed_messages())
     session.clear()
@@ -30,6 +30,9 @@ def mainpage():
 def carts():
     return render_template('carts.html')
 
+@app.route("/products/show/<productid>")
+def display_product():
+    return render_template('view_product.html')
 
 
 @app.route('/admin')

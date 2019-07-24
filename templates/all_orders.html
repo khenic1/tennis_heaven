@@ -9,36 +9,120 @@
         .right h4 {
             margin-right: 45px;
         }
+        .search {
+                border-radius: 14px;
+                margin-top: 48px;
+                margin-left: 175px;
+                margin-bottom: 20px;
+
+        }
+        table.table {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        ul li {
+            display: inline-block;
+             margin-top: 35px;
+        }
+        ul {
+            text-align: center;
+
+        }
     </style>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_header.css') }}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-dark" style="background-color: #990000;">
         <div class="left">
             <h3 style="color:white" id="head">Dashboard</h3>
-            <a href=><h4 style="color:white" id="head">Orders</h4></a>
-            <a href="#"><h4 style="color:white" id="head">Products</h4></a>
+            <a href="#" onclick="underline()">
+                <h4 class="click" style="color:white" id="head">Orders</h4>
+            </a>
+            <a href="#">
+                <h4 class="click" style="color:white" id="head">Products</h4>
+            </a>
         </div>
         <div class="right">
             <a href="#"><h4 style="color:white" id="head">log off</h4></a>
         </div>
     </nav>
     <main>
-        <nav class="navbar navbar-light">
+        <nav class="navbar">
             <form class="form-inline">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="search" aria-label="Username"
-                        aria-describedby="basic-addon1">
+                    <input class="search" type="search" class="form-control"
+                        placeholder="search"
+                        aria-label="Username"
+                        aria-describedby="basic-addon1"
+                        results="0"
+                        >
                 </div>
             </form>
         </nav>
-
+        <table class="table table-striped">
+            <thead>
+                <tr style="background-color: #cccccc" >
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Billing Address</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th><a href="#">100</a></th>
+                    <td>Bob</td>
+                    <td>9/6/2015</td>
+                    <td>123 dojo way Bellevue Wa 98005</td>
+                    <td>$149.99</td>
+                    <td>
+                        <select name="status">
+                            <option value="shipped">Shipped</option>
+                            <option value="order-in-process">Order in process</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+      
     </main>
+    <footer>
+        <ul>
+            <li><a href="#">1 |</a></li>
+            <li><a href="#">2 |</a></li>
+            <li><a href="#">3 |</a></li>
+        </ul>
+    </footer>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
+<script>
+     $(document).ready(function(){
+         $(".click").click(function() {
+             $(this).css("text-decoration", "underline")
+             $(this).css("text-decoration-color", "#c87676")
+         })
+         $("#MyModal").modal();
+     });
+</script>
 </html>
 
 

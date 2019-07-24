@@ -48,6 +48,10 @@ def orders_page():
 def products_page():
     return render_template('all_products.html')
 
+@app.route('/show_order')
+def show_order():
+    return render_template('order.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

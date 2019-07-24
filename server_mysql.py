@@ -3,7 +3,6 @@ from flask_bcrypt import Bcrypt
 from mysqlconnection import connectToMySQL
 from datetime import datetime
 import re
-import os
 import my_utils
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -19,11 +18,17 @@ READ_ONE      = 'SELECT * from table WHERE id=%(id)s'
 UPDATE_RECORD = 'UPDATE table SET col1=%(col1)s, col2=%(col2)s, updated_at=NOW() WHERE id=%(id)s'
 DELETE_RECORD = 'DELETE FROM table WHERE id=%(id)s'
 
+racquets = ['prince_racquet', 'head_racquet','wilson_racquet', 'babolat_racquet']
+
 @app.route("/")
 def mainpage():
     print(get_flashed_messages())
     session.clear()
-    return render_template("index.html")
+    return render_template('index.html', racquets=racquets)
+
+@app.route('/admin')
+def admin_login():
+    return render_template('admin.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

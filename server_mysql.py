@@ -34,14 +34,19 @@ def carts():
 def display_product():
     return render_template('view_product.html')
 
+
+@app.route('/admin')
+def admin_login():
+    return render_template('admin.html')
+
 @app.route('/orders')
 def orders_page():
     return render_template('all_orders.html')
 
 
-@app.route('/admin')
-def admin_login():
-    return render_template('admin.html')
+@app.route('/products')
+def products_page():
+    return render_template('all_products.html')
 
 
 if __name__ == "__main__":

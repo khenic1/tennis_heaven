@@ -32,12 +32,14 @@ def carts():
 
 
 
-
-
-
 @app.route('/admin')
 def admin_login():
     return render_template('admin.html')
+
+
+@app.route('/orders')
+def orders_page():
+    return render_template('orders.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,47 @@
+{% extends "master.html" %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+
+{% include "header.html" %}
+<div class="container">
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+            <th scope="row">t-shirt</th>
+            <td>$25.00</td>
+            <td>2 <a href="#">edit</a>  <a href="#"><img src="{{url_for('static', filename='img/delete_item.jpeg')}}" alt="delete" style="height: 30px;"></a></td>
+            <td>$50.00</td>
+            </tr>
+            <tr>
+            <th scope="row">shoe</th>
+            <td>$80.00</td>
+            <td>1 <a href="#">edit</a>  <a href="#"><img src="{{url_for('static', filename='img/delete_item.jpeg')}}" alt="delete" style="height: 30px;"></a></td>
+            <td>$80.00</td>
+            </tr>
+            <tr>
+            <th scope="row">racquet</th>
+            <td>$85.00</td>
+            <td>1 <a href="#">edit</a>  <a href="#"><img src="{{url_for('static', filename='img/delete_item.jpeg')}}" alt="delete" style="height: 30px;"></a></td>
+            <td>$85.00</td>
+            </tr>
+            <tr>
+                <th scope="row" colspan="3">Total</th>
+                <td>$215.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+{%endblock%}

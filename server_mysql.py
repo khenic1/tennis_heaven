@@ -26,6 +26,15 @@ def mainpage():
     session.clear()
     return render_template('index.html', racquets=racquets)
 
+@app.route("/carts")
+def carts():
+    return render_template('carts.html')
+
+
+
+
+
+
 @app.route('/admin')
 def admin_login():
     return render_template('admin.html')

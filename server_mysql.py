@@ -32,9 +32,6 @@ def carts():
 
 
 
-
-
-
 @app.route('/admin')
 def admin_login():
     return render_template('admin.html')

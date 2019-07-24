@@ -7,22 +7,34 @@
 {% block content %}
 
 {% include "header.html" %}
-<!-- <div class="container"> -->
-    <div class="row mt-3">
-        <div class="col ml-5">
-            {% call macros.card(title='Product Name') -%}
-            <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="tennis_silhouette" style="height: 400px;">
-            {%- endcall %}
-        </div>
-        <div class="col mr-5">
-            {% call macros.card(title='Product Description') -%}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu lobortis elementum nibh tellus molestie. Mattis nunc sed blandit libero volutpat. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Blandit massa enim nec dui nunc. Dui faucibus in ornare quam viverra orci sagittis eu. Nunc sed velit dignissim sodales ut eu. Ipsum dolor sit amet consectetur adipiscing elit duis tristique. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Gravida quis blandit turpis cursus in hac habitasse.
+<div class="row mt-3">
+    <div class="col ml-5">
+        {% call macros.card(title='Product Name') -%}
+        <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;">
+        {%- endcall %}
+        <p>Amount <select class="text-right" name="amount">Amount
+            <option value="price">1 $85.00</option>
+            <option value="popular">2 $170.00</option>
+            <option value="popular">3 $255.00</option>
+        </select></p>
+        
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 45px;">
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 45px;">
+        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 45px;">
+    </div>
+    <div class="col mr-5">
+        {% call macros.card(title='Product Description') -%}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu lobortis elementum nibh tellus molestie. Mattis nunc sed blandit libero volutpat. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Blandit massa enim nec dui nunc. Dui faucibus in ornare quam viverra orci sagittis eu. Nunc sed velit dignissim sodales ut eu. Ipsum dolor sit amet consectetur adipiscing elit duis tristique. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Gravida quis blandit turpis cursus in hac habitasse.
 
-            Rhoncus mattis rhoncus urna neque viverra justo nec ultrices dui. Urna cursus eget nunc scelerisque viverra mauris. Nec ultrices dui sapien eget mi proin sed libero. Mauris a diam maecenas sed. Auctor eu augue ut lectus arcu. Felis eget nunc lobortis mattis aliquam. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Sagittis orci a scelerisque purus. Lectus nulla at volutpat diam ut venenatis. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Vitae proin sagittis nisl rhoncus mattis rhoncus. Ornare suspendisse sed nisi lacus sed. Turpis egestas maecenas pharetra convallis posuere. In pellentesque massa placerat duis. Vivamus at augue eget arcu dictum varius. Id donec ultrices tincidunt arcu non sodales neque sodales.
-
-            Vitae purus faucibus ornare suspendisse sed. Dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Turpis egestas sed tempus urna. Nunc faucibus a pellentesque sit amet. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Sed euismod nisi porta lorem mollis aliquam. Massa massa ultricies mi quis hendrerit dolor magna. Urna cursus eget nunc scelerisque viverra mauris in. Accumsan lacus vel facilisis volutpat est velit egestas. At in tellus integer feugiat scelerisque. In egestas erat imperdiet sed euismod nisi. Ultrices gravida dictum fusce ut placerat orci. Sed odio morbi quis commodo. Nunc sed velit dignissim sodales ut eu. In hendrerit gravida rutrum quisque non tellus. Sed adipiscing diam donec adipiscing. Orci phasellus egestas tellus rutrum tellus pellentesque eu.
-
-            {%- endcall %}
-        </div>
+        Rhoncus mattis rhoncus urna neque viverra justo nec ultrices dui. Urna cursus eget nunc scelerisque viverra mauris. Nec ultrices dui sapien eget mi proin sed libero. Mauris a diam maecenas sed. Auctor eu augue ut lectus arcu. Felis eget nunc lobortis mattis aliquam. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Sagittis orci a scelerisque purus. Lectus nulla at volutpat diam ut venenatis. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Vitae proin sagittis nisl rhoncus mattis rhoncus. Ornare suspendisse sed nisi lacus sed. Turpis egestas maecenas pharetra convallis posuere. In pellentesque massa placerat duis. Vivamus at augue eget arcu dictum varius. Id donec ultrices tincidunt arcu non sodales neque sodales.
+        {%- endcall %}
+    </div>
+</div>
+<!-- <div class="row">Amount -->
+    <!-- <select class="card-header text-right" name="amount">
+        <option value="price">1 $85.00</option>
+        <option value="popular">2 $170.00</option>
+        <option value="popular">3 $255.00</option>
+    </select> -->
 <!-- </div> -->
 {%endblock%}

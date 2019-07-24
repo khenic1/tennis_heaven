@@ -32,7 +32,7 @@ def carts():
 
 @app.route("/products/show/<productid>")
 def display_product(productid):
-    return render_template('view_product.html')
+    return render_template('view_product.html', racquets=racquets)
 
 @app.route('/orders')
 def orders_page():

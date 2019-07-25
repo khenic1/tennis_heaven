@@ -39,6 +39,9 @@ def display_product(productid):
 def admin_login():
     return render_template('admin.html')
 
+
+
+
 @app.route('/orders')
 def orders_page():
     return render_template('all_orders.html')

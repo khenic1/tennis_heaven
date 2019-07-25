@@ -48,8 +48,7 @@
                     </div>
                     <div class="card-body">
                             {% for product in products %}
-                            {% set image='img/'+racquet+'.jpg' %}
-                            {% set image='img/product-'+product['image_id']+'.jpg' %}
+                            {% set image='img/'+product['image_id']+'.jpg' %}
                             <a href="/products/show/{{loop.index}}"><img src="{{url_for('static', filename=image)}}" alt="..." class="img-thumbnail" style="width:200px;height: 200px;"></a>
                             {%endfor%}
                     </div>

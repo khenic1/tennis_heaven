@@ -115,17 +115,19 @@
                 </tr>
             </thead>
             <tbody>
+                {% for product in all_products %}
                 <tr>
-                    <th><img src="#" alt="img"></th>
-                    <td>1</td>
-                    <td>T-shirt</td>
-                    <td>123</td>
-                    <td>1000</td>
+                    <th><img src="/static/img/{{product.product_image}}" alt="{{ product.name }}" width="120" height="90"></th>
+                    <td>{{ product["id"] }}</td>
+                    <td>{{ product['name'] }}</td>
+                    <td>{{ product['inventory_count'] }}</td>
+                    <td>{{ product['quantity_sold'] }}</td>
                     <td>
                         <a href="#" data-toggle="modal" data-target="#edit_product">edit</a>
                         <a href="#">delete</a>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
 
@@ -140,7 +142,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form action="/add_product" method="post">
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" name="name" class="form-control" id="exampleFormControlInput1">
@@ -153,27 +155,21 @@
                             
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Categories</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>Racket</option>
-                                    <option>Tennis Balls</option>
-                                    <option>Shirts</option>
-                                    <option>Skirts</option>
-                                    <option>Hats</option>
+                                <select name="category" class="form-control" id="exampleFormControlSelect1">
+                                    <option>racquets</option>
+                                    <option>shoes</option>
+                                    <option>t-shirts</option>
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">or add new category</label>
-                                <input type="text" name="new_category" class="form-control" id="exampleFormControlInput1">
-                            </div>
-                            <form action="/action_page.php">
+                            </div> 
+                            <!-- <form action="/action_page.php"> -->
                                 <input type="file" name="pic" accept="image/*">
-                                <input type="submit">
-                            </form>
+                                <!-- <input type="submit"> -->
+                            <!-- </form> -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-primary">Add product</button>
                     </div>
                 </div>
             </div>
@@ -192,7 +188,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="/edit_product" method="post">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" id="exampleFormControlInput1">

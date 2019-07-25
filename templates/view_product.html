@@ -4,18 +4,19 @@
 
 {% import 'macros.html' as macros %}
 
+{% include "header.html" %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% block content %}
 
-{% include "header.html" %}
+
 <div class="row mt-3">
     <div class="col ml-5">
         {% call macros.card(title='Product Name') -%}
         <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;">
         {%- endcall %}
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/wilson_racquet2.jpg')}}"alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/wilson_racquet3.jpg')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/wilson_racquet4.jpg')}}"alt="tennis_silhouette" style="height: 100px;">
     </div>
     <div class="col mr-5">
         {% call macros.card(title='Product Description') -%}
@@ -37,9 +38,15 @@
             <p></p>
         </div>
         <div class="col-sm-6">
-            <button type="submit" id="fadeclass" class="btn btn-success">Pay</button>
+            <button type="submit" class="btn btn-success">Add to Cart</button>
         </div>
     </div>
 </form>
+<a id="alert-box">Test jQuery</a>
+<script>
 
+$('#alert-box').click(function(){
+    alert("Is this working?");
+});
+</script>
 {%endblock%}

@@ -3,19 +3,20 @@
 {% block title %}Shopping Cart{% endblock %}
 
 {% import 'macros.html' as macros %}
+
 {% include "header.html" %}
 
 {% block content %}
+{{ macros.showflashes(category=['error'], alert_type='alert-danger') }}
 
 <div class="row mt-3">
     <div class="col ml-5">
         {% call macros.card(title='Product Name') -%}
         <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;">
         {%- endcall %}
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/tennis_logo.png')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/wilson_racquet2.jpeg')}}"alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/wilson_racquet3.jpeg')}}" alt="tennis_silhouette" style="height: 100px;">
+        <img src="{{url_for('static', filename='img/wilson_racquet4.jpeg')}}"alt="tennis_silhouette" style="height: 100px;">
     </div>
     <div class="col mr-5">
         {% call macros.card(title='Product Description') -%}
@@ -25,32 +26,34 @@
         {%- endcall %}
     </div>
 </div>
-
-<form action="#" method="POST">
-    <div class="form-group row mt-3">
-        <div class="col py-2 text-right">
-            <p style="margin-right: 5px;"> Amount <select name="amount">Amount
-                <option value="price">1 $85.00</option>
-                <option value="popular">2 $170.00</option>
-                <option value="popular">3 $255.00</option>
-            </select></p>
-            <p></p>
+<div class="row">
+    <div class="col"></div>
+    <div class="col">
+    {{ macros.showflashes(category=['success'], alert_type='alert-success') }}
+    <form action="/add_to_cart/{{productid}}" method="POST">
+        <div class="form-group row mt-3">
+            <div class="col py-2 text-right">
+                <p style="margin-right: 5px;"> Amount <select name="amount">Amount
+                    <option value="price">1 $85.00</option>
+                    <option value="popular">2 $170.00</option>
+                    <option value="popular">3 $255.00</option>
+                </select></p>
+                <p></p>
+            </div>
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-success">Add to Cart</button>
+            </div>
         </div>
-        <div class="col-sm-6">
-            <button type="submit" id="add-cart-btn" class="btn btn-success">Pay</button>
-        </div>
+    </form>
     </div>
-</form>
-<button id="success-btn">Success</button>
-<div style="display: none; color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;" class="alert-box success">
-    Successful Alert !!!
 </div>
-<script>
-
-       $( "#success-btn" ).click(function() {
-        $( "div.success" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 400 );
-       });
 
 
-</script>
+
 {%endblock%}
+{% block morescripts %}
+
+<script>
+$('.alert').fadeOut(2500);
+</script>
+{%endblock%} 

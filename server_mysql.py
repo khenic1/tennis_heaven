@@ -18,13 +18,18 @@ READ_ONE      = 'SELECT * from table WHERE id=%(id)s'
 UPDATE_RECORD = 'UPDATE table SET col1=%(col1)s, col2=%(col2)s, updated_at=NOW() WHERE id=%(id)s'
 DELETE_RECORD = 'DELETE FROM table WHERE id=%(id)s'
 
+products = [{'name':'Prince Racquet', 'id':1, 'image_id': 'prince_racquet'}, {'name': 'Wilson Racquet', 'id':2, 'image_id':'wilson_racquet'}, {'name': 'Head Racquet', 'id':3, 'image_id': 'head_racquet'}, {'name': 'Babolat Racquet', 'id':4, 'image_id': 'babolat_racquet'}]
 racquets = ['prince_racquet', 'head_racquet','wilson_racquet', 'babolat_racquet']
+categories = [{'name':'T-shirts', 'id':1}, {'name': 'Shoes', 'id':2}, {'name': 'Racquets', 'id':3}]
 
-@app.route("/products/category")
-def mainpage():
-    print(get_flashed_messages())
-    session.clear()
-    return render_template('index.html', racquets=racquets)
+@app.route("/products/category/<catid>/<pagenum>")
+def mainpage(catid, pagenum):
+    #select query from categories, products, and images(racquets) tables
+    return render_template('index.html', racquets=racquets, catid=int(catid), pagenum=int(pagenum), categories=categories, products=products)
+
+@app.route("/process_search", methods=["POST"])
+def process_search():
+    return redirect("/products/category/1/1")
 
 @app.route("/carts")
 def carts():

@@ -9,42 +9,61 @@
 <div class="container">
 
 <div class="row mt-3">
-    <div class="col-4">
-            <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                            <input type="search" placeholder="Product Name">
-                            <h5 class="card-title mt-3">Categories</h5>
-                            <div class="list-group">
-                                    <a href="#" class="list-group-item list-group-item-action">T-shirts</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Shoes</a>
-                                    <a href="#" class="list-group-item list-group-item-action">Racquets</a>
-                            </div>
-                    </div>
-            </div>
-    </div>
+<div class="col-4">
+        <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                        <div class="row">
+                                <form action="/process_search" method="POST">
+                                        <input class="col-7" type="search" placeholder="Product Name">
+                                        <button class="col-4 ml-1 btn btn-outline-success" type="submit">Search</button>
+                                </form>
+                        </div>
+                        <h5 class="card-title mt-3">Categories</h5>
+                        <div class="list-group">
+                                {% for item in categories%}
+                                <a href="/products/category/{{item['id']}}/1" class="list-group-item list-group-item-action">{{item['name']}}</a>
+                                {%endfor%}
+                        </div>
+                </div>
+        </div>
+</div>
     <div class="col-8">
             <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col">
-                                <h4>Racquets</h4>
-                            </div>
-                            <div class="col text-right">Sorted by
-                                <select class="card-header text-right" name="sorted_by">
-                                    <option value="price">Price</option>
-                                    <option value="popular">Most Popular</option>
-                                </select>
-                            </div>
+                                {% for item in categories%}
+                                {% if catid==item['id']%}
+                                <div class="col">
+                                        <h4>{{item['name']}}</h4>
+                                </div>
+                                {%endif%}
+                                {%endfor%}
+                                <div class="col text-right">Sorted by
+                                        <select class="card-header text-right" name="sorted_by">
+                                        <option value="price">Price</option>
+                                        <option value="popular">Most Popular</option>
+                                        </select>
+                                </div>
                         </div>
                     </div>
                     <div class="card-body">
-                            {% for racquet in racquets %}
+                            {% for product in products %}
                             {% set image='img/'+racquet+'.jpg' %}
-                            <img src="{{url_for('static', filename=image)}}" alt="..." class="img-thumbnail" style="width:200px;height: 200px;">
+                            {% set image='img/product-'+product['image_id']+'.jpg' %}
+                            <a href="/products/show/{{loop.index}}"><img src="{{url_for('static', filename=image)}}" alt="..." class="img-thumbnail" style="width:200px;height: 200px;"></a>
                             {%endfor%}
                     </div>
                     <div class="card-footer text-muted">
-                            1|2|3
+                        {% for i in range(1,4)%}
+                                {% if i!=1%}
+                                |
+                                {%endif%}
+                                {% if i!=pagenum%}
+                                <a href="/products/category/{{catid}}/{{i}}">{{i}}</a>
+                                {% else %}
+                                {{i}}
+                                {%endif%}
+                        {%endfor%}
                     </div>
             </div>
     </div>

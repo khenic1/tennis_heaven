@@ -32,7 +32,12 @@ def carts():
 
 @app.route("/products/show/<productid>")
 def display_product(productid):
-    return render_template('view_product.html', racquets=racquets)
+    return render_template('view_product.html', productid=productid)
+
+@app.route("/add_to_cart/<productid>", methods=['POST'])
+def add_to_cart(productid):
+    flash("Item added to cart", "success")
+    return redirect("/products/show/"+productid)
 
 
 @app.route('/admin')

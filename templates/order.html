@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .left h3,
+        .left h4 {
+            display: inline-block;
+            margin-right: 45px;
+        }
+
+        .right h4 {
+            margin-right: 45px;
+        }
+
+        .search {
+            border-radius: 14px;
+            margin-top: 48px;
+            margin-left: 175px;
+            margin-bottom: 20px;
+
+        }
+
+
+        ul li {
+            display: inline-block;
+            margin-top: 35px;
+        }
+
+        ul {
+            text-align: center;
+
+        }
+        
+        .status, .more-info {
+            display: inline-block;
+            border: 2px solid black;
+        }
+        .table {
+            border: 2px solid black;
+        }
+
+        .left-main, .right-main {
+            display: inline-block;
+        }
+        .right-main {
+            margin-left: 100px;
+        }
+        .left-main {
+            padding: 24px;
+            border: 2px solid black;
+            margin-top: 26px;
+        }
+        * {
+            text-align: center;
+        }
+
+
+    </style>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin_header.css') }}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous">
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark" style="background-color: #990000;">
+        <div class="left">
+            <h3 style="color:white" id="head">Dashboard</h3>
+            <a href="#" onclick="underline()">
+                <h4 class="click" style="color:white" id="head">Orders</h4>
+            </a>
+            <a href="#">
+                <h4 class="click" style="color:white" id="head">Products</h4>
+            </a>
+        </div>
+        <div class="right">
+            <a href="#">
+                <h4 style="color:white" id="head">log off</h4>
+            </a>
+        </div>
+    </nav>
+    <main>
+       <div class="left-main">
+        <p>Order ID: 1</p>
+        <p>Customer shipping info:</p>
+        <p>name: bob</p>
+        <p>address: 123 dojo way</p>
+        <p>city: seattle</p>
+        <p>state: wa</p>
+        <p>zip: 98133</p>
+       </div>
+        <div class="right-main">
+            <table class="table table-striped">
+                <thead>
+                    <tr style="background-color: #cccccc">
+                        <th scope="col">ID</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>35</td>
+                        <td>cup</td>
+                        <td>$9.99</td>
+                        <td>1</td>
+                        <td>$9.99</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="status">
+                <p>Status: shipped</p>
+            </div>
+            <div class="more-info">
+                <p>Sub total: $29.98</p>
+                <p>Shipping: $100</p>
+                <p>Total Price: $30.98</p>
+            </div>
+        </div>
+    </main>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".click").click(function () {
+            $(this).css("text-decoration", "underline")
+            $(this).css("text-decoration-color", "#c87676")
+        })
+        $("#MyModal").modal();
+    });
+</script>
+
+</html>

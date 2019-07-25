@@ -1,5 +1,13 @@
 {% extends "master.html" %}
-
+{%block head %}
+    <script>
+        $(document).ready(function() {
+            $(button).click(function() {
+                alert("Item added to cart");
+            })
+        });
+    </script>
+{%endblock%}
 {% block title %}Shopping Cart{% endblock %}
 
 {% import 'macros.html' as macros %}
@@ -26,7 +34,7 @@
     </div>
 </div>
 
-<form action=# method="POST">
+<form action="#" method="POST">
     <div class="form-group row mt-3">
         <div class="col py-2 text-right">
             <p style="margin-right: 5px;"> Amount <select name="amount">Amount
@@ -37,7 +45,7 @@
             <p></p>
         </div>
         <div class="col-sm-6">
-            <button type="submit" class="btn btn-success">Pay</button>
+            <button type="submit" id="fadeclass" class="btn btn-success">Pay</button>
         </div>
     </div>
 </form>

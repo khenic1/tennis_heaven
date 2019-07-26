@@ -48,7 +48,7 @@ def display_product(productid):
     query = f"SELECT * FROM products WHERE id = {productid};"
     product = mysql.query_db(query)
     product = product[0]
-    return render_template('view_product.html', product=product, productid=productid)
+    return render_template('view_product.html', product=product, productid=productid, product_images=product_images)
 
 
 @app.route("/add_to_cart/<id>", methods=['POST'])

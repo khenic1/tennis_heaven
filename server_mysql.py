@@ -50,7 +50,7 @@ def display_product(productid):
     query = f"SELECT * FROM products WHERE id = {productid};"
     product = mysql.query_db(query)
     product = product[0]
-    return render_template('view_product.html', product=product)
+    return render_template('view_product.html', product=product, productid=productid)
 
 @app.route("/add_to_cart/<id>", methods=['POST'])
 def add_to_cart(id):

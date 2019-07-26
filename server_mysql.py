@@ -23,7 +23,7 @@ categories = [{'name':'T-shirts', 'id':1}, {'name': 'Shoes', 'id':2}, {'name': '
 
 @app.route("/products/category/<catid>/<pagenum>")
 def mainpage(catid, pagenum):
-    #select query from categories, products, and images(racquets) tables
+    #select query from categories, products, and images tables
     return render_template('index.html', catid=int(catid), pagenum=int(pagenum), categories=categories, products=products)
 
 @app.route("/process_search", methods=["POST"])

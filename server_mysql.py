@@ -18,7 +18,7 @@ READ_ONE      = 'SELECT * from table WHERE id=%(id)s'
 UPDATE_RECORD = 'UPDATE table SET col1=%(col1)s, col2=%(col2)s, updated_at=NOW() WHERE id=%(id)s'
 DELETE_RECORD = 'DELETE FROM table WHERE id=%(id)s'
 
-products = [{'name':'Prince Racquet', 'id':1, 'image_id': 'prince_racquet'}, {'name': 'Wilson Racquet', 'id':2, 'image_id':'wilson_racquet'}, {'name': 'Head Racquet', 'id':3, 'image_id': 'head_racquet'}, {'name': 'Babolat Racquet', 'id':4, 'image_id': 'babolat_racquet'}]
+# products = [{'name':'Prince Racquet', 'id':1, 'image_id': 'prince_racquet'}, {'name': 'Wilson Racquet', 'id':2, 'image_id':'wilson_racquet'}, {'name': 'Head Racquet', 'id':3, 'image_id': 'head_racquet'}, {'name': 'Babolat Racquet', 'id':4, 'image_id': 'babolat_racquet'}]
 # categories = [{'name':'T-shirts', 'id':1}, {'name': 'Shoes', 'id':2}, {'name': 'Racquets', 'id':3}]
 
 @app.route("/products/category/<catid>/<pagenum>")

@@ -48,9 +48,12 @@
                     </div>
                     <div class="card-body">
                             {% for product in products %}
-                            {% set image='img/'+product['image_id']+'.jpg' %}
+                            {% if product['categories_id'] == catid %}
+                            {% set image='img/'+product['product_image'] %}
                             <a href="/products/show/{{loop.index}}"><img src="{{url_for('static', filename=image)}}" alt="..." class="img-thumbnail" style="width:200px;height: 200px;"></a>
+                            {% endif %}
                             {%endfor%}
+                            
                     </div>
                     <div class="card-footer text-muted">
                         {% for i in range(1,4)%}

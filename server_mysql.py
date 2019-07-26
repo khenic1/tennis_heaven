@@ -19,29 +19,40 @@ UPDATE_RECORD = 'UPDATE table SET col1=%(col1)s, col2=%(col2)s, updated_at=NOW()
 DELETE_RECORD = 'DELETE FROM table WHERE id=%(id)s'
 
 products = [{'name':'Prince Racquet', 'id':1, 'image_id': 'prince_racquet'}, {'name': 'Wilson Racquet', 'id':2, 'image_id':'wilson_racquet'}, {'name': 'Head Racquet', 'id':3, 'image_id': 'head_racquet'}, {'name': 'Babolat Racquet', 'id':4, 'image_id': 'babolat_racquet'}]
-categories = [{'name':'T-shirts', 'id':1}, {'name': 'Shoes', 'id':2}, {'name': 'Racquets', 'id':3}]
+# categories = [{'name':'T-shirts', 'id':1}, {'name': 'Shoes', 'id':2}, {'name': 'Racquets', 'id':3}]
 
 @app.route("/products/category/<catid>/<pagenum>")
 def mainpage(catid, pagenum):
-    #select query from categories, products, and images(racquets) tables
+    mysql = connectToMySQL(dbname)
+    categories = mysql.query_db("SELECT * FROM categories")
+    mysql = connectToMySQL(dbname)
+    products = mysql.query_db("SELECT * FROM products")
     return render_template('index.html', catid=int(catid), pagenum=int(pagenum), categories=categories, products=products)
 
 @app.route("/process_search", methods=["POST"])
 def process_search():
     return redirect("/products/category/1/1")
 
-@app.route("/carts")
+@app.route('/carts')
 def carts():
+    mysql = connectToMySQL(dbname)
+    query = f"SELECT * FROM products WHERE id = {session['id']};"
+    product = mysql.query_db(query)
+    product = product[0]
     return render_template('carts.html')
 
 @app.route("/products/show/<productid>")
 def display_product(productid):
-    return render_template('view_product.html', productid=productid)
+    mysql = connectToMySQL(dbname)
+    query = f"SELECT * FROM products WHERE id = {productid};"
+    product = mysql.query_db(query)
+    product = product[0]
+    return render_template('view_product.html', product=product)
 
-@app.route("/add_to_cart/<productid>", methods=['POST'])
-def add_to_cart(productid):
+@app.route("/add_to_cart/<id>", methods=['POST'])
+def add_to_cart(id):
     flash("Item added to cart", "success")
-    return redirect("/products/show/"+productid)
+    return redirect("/products/show/"+id)
 
 
 @app.route('/admin')
@@ -75,7 +86,7 @@ def add_product():
     mysql = connectToMySQL(dbname)
     query = "INSERT INTO products (name, inventory_count, quantity_sold, product_image, price, categories_id, description) VALUES (%(name)s, %(inventory_count)s, %(quantity_sold)s, %(product_image)s, %(price)s, %(categories_id)s, %(description)s);"
     data = {
-        "name": request.form['name'],
+        "name": request.form['name'],   
         "product_image": request.form['pic'],
         "categories_id": category_id,
         "description": request.form['description'],

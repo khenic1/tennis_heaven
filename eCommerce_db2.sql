@@ -1,0 +1,1 @@
+SELECT * FROM eCommerce_db.categories;

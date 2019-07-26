@@ -55,6 +55,7 @@ def display_product(productid):
 
 @app.route("/add_to_cart/<id>", methods=['POST'])
 def add_to_cart(id):
+    session['cart'] = request.form['amount']
     flash("Item added to cart", "success")
     return redirect("/products/show/"+id)
 

@@ -9,7 +9,6 @@
 {% block content %}
 {{ macros.showflashes(category=['error'], alert_type='alert-danger') }}
 
-
 <div class="row mt-3">
     <div class="col ml-5">
         {% call macros.card(title='Product Name') -%}
@@ -50,9 +49,11 @@
 </div>
 
 
+
 {%endblock%}
 {% block morescripts %}
+
 <script>
 $('.alert').fadeOut(2500);
 </script>
-{%endblock%}
+{%endblock%} 

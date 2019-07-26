@@ -9,7 +9,7 @@ bcrypt = Bcrypt(app)
 
 app.secret_key = 'darksecret'
 
-dbname = 'dbname'
+dbname = 'eCommerce_db'
 # The following queries can be re-used or edited before use
 # CRUD - Create, Read, Update, Delete
 CREATE_RECORD = 'INSERT INTO table ( col1, col2, created_at, updated_at ) VALUES ( %(col1)s, %(col2)s, NOW(), NOW() )'
@@ -45,21 +45,56 @@ def add_to_cart(productid):
 
 
 @app.route('/admin')
-def admin_login():
+def display_admin_login():
     return render_template('admin.html')
 
-@app.route('/orders')
+
+@app.route('/admin_login', methods=["POST"])
+def admin_login():
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO admins (email, password) VALUES ( %(email)s, %(password)s );"
+    admins = mysql.query_db(query, request.form)
+    return redirect('/dashboard/orders')
+
+@app.route('/dashboard/orders')
 def orders_page():
     return render_template('all_orders.html')
 
 
-@app.route('/products')
+@app.route('/dashboard/products')
 def products_page():
-    return render_template('all_products.html')
+    mysql = connectToMySQL(dbname)
+    all_products = mysql.query_db('SELECT * FROM products;')
+    return render_template('all_products.html', all_products = all_products)
+
+@app.route('/add_product', methods=["POST"])
+def add_product():
+    mysql = connectToMySQL(dbname)
+    category_id = mysql.query_db(f"SELECT id FROM categories WHERE name = '{request.form['category']}'")
+    category_id = category_id[0]['id']
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO products (name, inventory_count, quantity_sold, product_image, price, categories_id, description) VALUES (%(name)s, %(inventory_count)s, %(quantity_sold)s, %(product_image)s, %(price)s, %(categories_id)s, %(description)s);"
+    data = {
+        "name": request.form['name'],
+        "product_image": request.form['pic'],
+        "categories_id": category_id,
+        "description": request.form['description'],
+        "inventory_count": 10,
+        "quantity_sold": 0,
+        "price": 20.00
+
+    }
+    new_product_id = mysql.query_db(query, data)
+    print(new_product_id)
+    return redirect('/dashboard/products')
+
+
 
 @app.route('/show_order')
 def show_order():
     return render_template('order.html')
+
+
 
 
 if __name__ == "__main__":

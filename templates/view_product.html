@@ -13,11 +13,11 @@
     <div class="col ml-5">
         {% call macros.card(title='Product Name') -%}
         <!-- <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;"> -->
-        <img src="/static/img/{{product.product_image}}" alt="{{product.name}}" style="height: 400px; width: 400px;">
+        <img src="/static/img/{{product.product_image}}" alt="{{product.name}}"  id="big_product_image" style="height: 400px; width: 400px;">
         {%- endcall %}
-        <img src="{{url_for('static', filename='img/wilson_racquet2.jpeg')}}"alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/wilson_racquet3.jpeg')}}" alt="tennis_silhouette" style="height: 100px;">
-        <img src="{{url_for('static', filename='img/wilson_racquet4.jpeg')}}"alt="tennis_silhouette" style="height: 100px;">
+        {% for image in product_images %}
+        <img src="{{url_for('static', filename='img/'+image['imagefile'])}}" alt="racquet" class="product_thumbnail" style="height: 100px;">
+        {%endfor%}
     </div>
     <div class="col mr-5">
         {% call macros.card(title='Product Description') -%}
@@ -33,9 +33,10 @@
         <div class="form-group row mt-3">
             <div class="col py-2 text-right">
                 <p style="margin-right: 5px;"> Amount <select name="amount">Amount
-                    <option value="price">1 ($85.00)</option>
-                    <option value="popular">2 ($170.00)</option>
-                    <option value="popular">3 $255.00</option>
+                    {% for i in range(1, 5) %}
+                    {% set price = i*product['price']%}
+                    <option value="{{i}}">{{i}} (${{price}})</option>
+                    {% endfor %}
                 </select></p>
                 <p></p>
             </div>
@@ -54,5 +55,22 @@
 
 <script>
 $('.alert').fadeOut(2500);
+</script>
+
+<script>
+    $(".product_thumbnail").click(function(){
+        var all_images = $(".product_thumbnail");
+        for (var i=0; i<=all_images.length-1; i++){
+            if (this == all_images[i]) {
+                $(this).css("border", "1px solid blue");
+                var img_src = $(this).attr("src");
+                $("#big_product_image").attr("src", img_src);
+            }
+            else{
+                $(all_images[i]).css("border", "");
+            }
+        }
+        
+    });
 </script>
 {%endblock%} 

@@ -46,7 +46,7 @@ def display_product(productid):
     query = f"SELECT * FROM products WHERE id = {productid};"
     product = mysql.query_db(query)
     product = product[0]
-    return render_template('view_product.html', product=product)
+    return render_template('view_product.html', product=product, productid=productid)
 
 @app.route("/add_to_cart/<id>", methods=['POST'])
 def add_to_cart(id):
@@ -55,12 +55,57 @@ def add_to_cart(id):
 
 @app.route("/process_cart", methods=['POST'])
 def process_cart():
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO customers (first_name, last_name) VALUES ( %(firstname)s, %(lastname)s)"
+    data = {
+        "firstname": request.form['firstname'],
+        "lastname": request.form['lastname']
+    }
+    customer_id = mysql.query_db(query, data)
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO billing_address (address, address_2, city, state, zip_code) values ( %(address)s, %(address2)s, %(city)s, %(state)s, %(zipcode)s)"
+    data = {
+        "address": request.form['address'],
+        "address2": request.form['address2'],
+        "city": request.form['city'],
+        "state": request.form['state'],
+        "zipcode": request.form['zipcode']
+    }
+    billing_address_id = mysql.query_db(query, data)
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO shipping_address (address, address_2, city, state, zip_code) values ( %(address)s, %(address2)s, %(city)s, %(state)s, %(zipcode)s)"
+    data = {
+        "address": request.form['bill_address'],
+        "address2": request.form['bill_address2'],
+        "city": request.form['bill_city'],
+        "state": request.form['bill_state'],
+        "zipcode": request.form['bill_zipcode']
+    }
+    shipping_address_id = mysql.query_db(query, data)
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO payment (card, security_code) values (%(card)s, %(cvv)s)"
+    data = {
+        "card": request.form['card'],
+        "cvv": request.form['cvv']
+    }
+    payment_id = mysql.query_db(query, data)
+    mysql = connectToMySQL(dbname)
+    query = "INSERT INTO orders (customer_id, shipping_address_id, billing_address_id, payment_id) VALUES (%(customer_id)s, %(shipping_address_id)s, %(billing_address_id)s, %(payment_id)s)"; 
+    
+    data = {
+        "customer_id": customer_id,
+        "shipping_address_id": shipping_address_id,
+        "billing_address_id": billing_address_id,
+        "payment_id": payment_id
+    }
+    order_id = mysql.query_db(query, data)
     return redirect("/carts")
 
 
 @app.route('/admin')
 def display_admin_login():
     return render_template('admin.html')
+    
 
 
 @app.route('/admin_login', methods=["POST"])
@@ -72,7 +117,10 @@ def admin_login():
 
 @app.route('/dashboard/orders')
 def orders_page():
-    return render_template('all_orders.html')
+    mysql = connectToMySQL(dbname)
+    query =  "select orders.id, first_name, created_at, address from customers join orders on customers.id = orders.customer_id join billing_address on billing_address.id = orders.billing_address_id;"
+    orders = mysql.query_db(query)
+    return render_template('all_orders.html', orders=orders)
 
 
 @app.route('/dashboard/products')

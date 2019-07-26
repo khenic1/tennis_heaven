@@ -12,7 +12,8 @@
 <div class="row mt-3">
     <div class="col ml-5">
         {% call macros.card(title='Product Name') -%}
-        <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;">
+        <!-- <img src="{{url_for('static', filename='img/wilson_racquet.jpg')}}" alt="product" style="height: 400px;"> -->
+        <img src="/static/img/{{product.product_image}}" alt="{{product.name}}" style="height: 400px; width: 400px;">
         {%- endcall %}
         <img src="{{url_for('static', filename='img/wilson_racquet2.jpeg')}}"alt="tennis_silhouette" style="height: 100px;">
         <img src="{{url_for('static', filename='img/wilson_racquet3.jpeg')}}" alt="tennis_silhouette" style="height: 100px;">
@@ -20,9 +21,7 @@
     </div>
     <div class="col mr-5">
         {% call macros.card(title='Product Description') -%}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu lobortis elementum nibh tellus molestie. Mattis nunc sed blandit libero volutpat. Donec ac odio tempor orci dapibus ultrices in iaculis nunc. Blandit massa enim nec dui nunc. Dui faucibus in ornare quam viverra orci sagittis eu. Nunc sed velit dignissim sodales ut eu. Ipsum dolor sit amet consectetur adipiscing elit duis tristique. Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Gravida quis blandit turpis cursus in hac habitasse.
-
-        Rhoncus mattis rhoncus urna neque viverra justo nec ultrices dui. Urna cursus eget nunc scelerisque viverra mauris. Nec ultrices dui sapien eget mi proin sed libero. Mauris a diam maecenas sed. Auctor eu augue ut lectus arcu. Felis eget nunc lobortis mattis aliquam. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Sagittis orci a scelerisque purus. Lectus nulla at volutpat diam ut venenatis. Laoreet non curabitur gravida arcu ac tortor dignissim convallis. Vitae proin sagittis nisl rhoncus mattis rhoncus. Ornare suspendisse sed nisi lacus sed. Turpis egestas maecenas pharetra convallis posuere. In pellentesque massa placerat duis. Vivamus at augue eget arcu dictum varius. Id donec ultrices tincidunt arcu non sodales neque sodales.
+        <p>{{ product.description }}</p>
         {%- endcall %}
     </div>
 </div>
@@ -30,7 +29,7 @@
     <div class="col"></div>
     <div class="col">
     {{ macros.showflashes(category=['success'], alert_type='alert-success') }}
-    <form action="/add_to_cart/{{productid}}" method="POST">
+    <form action="/add_to_cart/{{product.id}}" method="POST">
         <div class="form-group row mt-3">
             <div class="col py-2 text-right">
                 <p style="margin-right: 5px;"> Amount <select name="amount">Amount

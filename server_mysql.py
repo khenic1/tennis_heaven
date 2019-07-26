@@ -35,10 +35,6 @@ def process_search():
 
 @app.route('/carts')
 def carts():
-    mysql = connectToMySQL(dbname)
-    query = f"SELECT * FROM products WHERE id = {session['id']};"
-    product = mysql.query_db(query)
-    product = product[0]
     return render_template('carts.html')
 
 @app.route("/products/show/<productid>")
@@ -99,12 +95,22 @@ def add_product():
     print(new_product_id)
     return redirect('/dashboard/products')
 
+@app.route('/edit_product', methods=["POST"])
+def edit_product():
+    return redirect('/dashboard/products')
+
+
 
 
 @app.route('/show_order')
 def show_order():
     return render_template('order.html')
 
+
+@app.route('/log_off')
+def destroy_session():
+    session.clear()
+    return redirect('/admin')
 
 
 

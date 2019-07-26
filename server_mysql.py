@@ -44,13 +44,15 @@ def carts():
     product = product[0]
     return render_template('carts.html')
 
+product_images = [{'id':1, 'imagefile': 'wilson_racquet.jpg'}, {'id':2, 'imagefile': 'wilson_racquet2.jpg'},{'id':3, 'imagefile': 'wilson_racquet3.jpg'},{'id':4, 'imagefile': 'wilson_racquet4.jpg'}]
+
 @app.route("/products/show/<productid>")
 def display_product(productid):
     mysql = connectToMySQL(dbname)
     query = f"SELECT * FROM products WHERE id = {productid};"
     product = mysql.query_db(query)
     product = product[0]
-    return render_template('view_product.html', product=product, productid=productid)
+    return render_template('view_product.html', product=product, productid=productid, product_images=product_images)
 
 @app.route("/add_to_cart/<id>", methods=['POST'])
 def add_to_cart(id):

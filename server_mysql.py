@@ -48,7 +48,9 @@ def display_product(productid):
     query = f"SELECT * FROM products WHERE id = {productid};"
     product = mysql.query_db(query)
     product = product[0]
-    return render_template('view_product.html', product=product, productid=productid)
+    product_price = product['price']
+    product_price = int(product_price)
+    return render_template('view_product.html', product=product, productid=productid, product_images=product_images, product_price=product_price)
 
 
 @app.route("/add_to_cart/<id>", methods=['POST'])
@@ -161,9 +163,12 @@ def edit_product():
 
 
 
-@app.route('/show_order')
-def show_order():
-    return render_template('order.html')
+@app.route('/show_order/<id>')
+def show_order(id):
+    mysql = connectToMySQL(dbname)
+    query = "select orders.id,first_name, shipping_address.address, shipping_address.city, shipping_address.state, shipping_address.zip_code from customers join orders on customers.id = orders.customer_id join shipping_address on orders.shipping_address_id = shipping_address.id where orders.id = 6;"
+    order_info = mysql.query_db(query)
+    return render_template('order.html', order_info=order_info)
 
 
 @app.route('/log_off')

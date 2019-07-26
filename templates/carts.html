@@ -48,14 +48,15 @@
             <a class="btn btn-primary text-right" href="/products/category" role="button">Continue Shopping</a>
         </div>
     </div>
+<form action="/process_cart" method="POST">
     <div class="row mt-2">
         <div class="col">
             {% call macros.card(title='Shipping Info') -%}
-            <form action="#" method="POST">
+
                     <div class="form-group row">
                         <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name=firstname id="firstname" placeholder="firstname">
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="firstname">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -73,7 +74,7 @@
                     <div class="form-group row">
                         <label for="address" class="col-sm-2 col-form-label">Address</label>
                         <div class="col-sm-10">
-                        <input type="text" class="form-control" name="address" id="inputPassword3" placeholder="address">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="address">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -100,7 +101,7 @@
                         <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="zipcode">
                         </div>
                     </div> 
-            </form>
+
             {%- endcall %}
         </div>
     </div>
@@ -108,11 +109,10 @@
     <div class="row mt-2">
         <div class="col">
             {% call macros.card(title='Billing Info') -%}
-            <form action="">
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="gridCheck1">
+                            <input class="form-check-input" type="checkbox" id="copyshipping">
                             <label class="form-check-label" for="gridCheck1">
                             Same as Shipping
                             </label>
@@ -122,13 +122,13 @@
                 <div class="form-group row">
                     <label for="firstname" class="col-sm-2 col-form-label">First Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name=firstname id="firstname" placeholder="firstname">
+                        <input type="text" class="form-control" name="bill_firstname" id="bill_firstname" placeholder="firstname">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="lastname" class="col-sm-2 col-form-label">Last Name</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="lastname" id="lastname" placeholder="lastname">
+                    <input type="text" class="form-control" name="bill_lastname" id="bill_lastname" placeholder="lastname">
                     </div>
                 </div>
                 <!-- <div class="form-group row">
@@ -140,31 +140,55 @@
                 <div class="form-group row">
                     <label for="address" class="col-sm-2 col-form-label">Address</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="address" id="inputPassword3" placeholder="address">
+                    <input type="text" class="form-control" name="bill_address" id="bill_address" placeholder="address">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="address2" class="col-sm-2 col-form-label">Address 2</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="address2" id="address2" placeholder="address 2">
+                    <input type="text" class="form-control" name="bill_address2" id="bill_address2" placeholder="address 2">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="city" class="col-sm-2 col-form-label">City</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="city" id="city" placeholder="city">
+                    <input type="text" class="form-control" name="bill_city" id="bill_city" placeholder="city">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="state" class="col-sm-2 col-form-label">State</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="state" id="state" placeholder="state">
+                    <input type="text" class="form-control" name="bill_state" id="bill_state" placeholder="state">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label for="zipcode" class="col-sm-2 col-form-label">Zipcode</label>
                     <div class="col-sm-10">
-                    <input type="text" class="form-control" name="zipcode" id="zipcode" placeholder="zipcode">
+                    <input type="text" class="form-control" name="bill_zipcode" id="bill_zipcode" placeholder="zipcode">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="zipcode" class="col-sm-2 col-form-label">Card</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="card" id="ccnum" placeholder="1111-2222-3333-4444">
+                    </div>
+                </div> 
+                <div class="form-group row">
+                    <label for="zipcode" class="col-sm-2 col-form-label">CVV</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="cvv" name="cvv" placeholder="352">
+                    </div>
+                </div>  
+                <div class="form-group row">
+                    <label for="expmonth" class="col-sm-2 col-form-label">Exp Month</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="expmonth" name="expmonth" placeholder="September">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="expyear" class="col-sm-2 col-form-label">Exp Year</label>
+                    <div class="col-sm-10">
+                    <input type="text" class="form-control" id="expyear" name="expyear" placeholder="2019">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -172,10 +196,31 @@
                     <button type="submit" class="btn btn-success">Pay</button>
                     </div>
                 </div>
-            </form>
             {%- endcall %}
         </div>
     </div>
+</form>
 </div>
 
 {%endblock%}
+
+
+{% block morescripts %}
+<script>
+$("#copyshipping").click(function() {
+    var copy_fields = ['firstname', 'lastname', 'address', 'address2', 'city', 'state', 'zipcode'];
+    if ($(this).prop("checked")){
+        for (var i = 0; i<=copy_fields.length; i++){
+            var temp = $('#'+copy_fields[i]).val();
+            $("#bill_"+copy_fields[i]).val(temp);
+        }
+    }
+    else {
+        for (var i = 0; i<=copy_fields.length; i++){
+            $("#bill_"+copy_fields[i]).val("");
+        }
+    }
+});
+</script>
+
+{% endblock %}

@@ -24,9 +24,9 @@ categories = [{'name':'T-shirts', 'id':1}, {'name': 'Shoes', 'id':2}, {'name': '
 @app.route("/products/category/<catid>/<pagenum>")
 def mainpage(catid, pagenum):
     #select query from categories, products, and images tables
-    mysql = connectToMySQL(dbname)
+    # mysql = connectToMySQL(dbname)
     
-    cats = mysql.query_db()
+    # cats = mysql.query_db()
     return render_template('index.html', catid=int(catid), pagenum=int(pagenum), categories=categories, products=products)
 
 @app.route("/process_search", methods=["POST"])
@@ -45,6 +45,10 @@ def display_product(productid):
 def add_to_cart(productid):
     flash("Item added to cart", "success")
     return redirect("/products/show/"+productid)
+
+@app.route("/process_cart", methods=['POST'])
+def process_cart():
+    return redirect("/carts")
 
 
 @app.route('/admin')

@@ -109,15 +109,17 @@
         </div>
     </nav>
     <main>
+        {% for order in order_info %}
        <div class="left-main">
-        <p>Order ID: 1</p>
+        <p>Order ID: {{ order['id']}}</p>
         <p>Customer shipping info:</p>
-        <p>name: bob</p>
-        <p>address: 123 dojo way</p>
-        <p>city: seattle</p>
-        <p>state: wa</p>
-        <p>zip: 98133</p>
+        <p>name: {{ order['first_name'] }}</p>
+        <p>address: {{ order['address'] }}</p>
+        <p>city: {{ order['city']}}</p>
+        <p>state: {{ order['state'] }}</p>
+        <p>zip: {{ order['zip_code'] }}</p>
        </div>
+       {% endfor %}
         <div class="right-main">
             <table class="table table-striped">
                 <thead>

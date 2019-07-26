@@ -34,7 +34,7 @@
             <div class="col py-2 text-right">
                 <p style="margin-right: 5px;"> Amount <select name="amount">Amount
                     {% for i in range(1, 5) %}
-                    {% set price = i*product['price']%}
+                    {% set price = i*product_price %}
                     <option value="{{i}}">{{i}} (${{price}})</option>
                     {% endfor %}
                 </select></p>

@@ -113,7 +113,7 @@
             <tbody>
                 {% for order in orders %}
                 <tr>
-                    <th><a href="/show_order">{{ order['id'] }}</a></th>
+                    <th><a href="/show_order/{{order['id']}}">{{ order['id'] }}</a></th>
                     <td>{{ order['first_name'] }}</td>
                     <td>{{ order['created_at'] }}</td>
                     <td>{{ order['address'] }}</td>
